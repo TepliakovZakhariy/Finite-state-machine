@@ -2,6 +2,11 @@
 
 This program describes a finite state machine model that simulates the day of a computer science student.
 
+## Installation
+
+Copy the repository, then run the fsm.py file
+You can also specify the verbosity and speed of state changes when the program starts.
+
 ## Description
 
 This machine has 6 states:
