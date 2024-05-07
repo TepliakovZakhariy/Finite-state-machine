@@ -1,0 +1,42 @@
+digraph G {
+
+  rankdir="LR"
+
+  sleep [label="Sleep"];
+  exam [label="Exam"];
+  study [label="Study"];
+  eat [label="Eat"];
+  death [label="Death", shape = "doublecircle"];
+  rest [label="Rest"];
+  
+  sleep -> eat [label= "Hour 7 with a 95% chance"];
+  sleep -> study [label= "Hour 8"]
+  
+  eat -> study [label= "Hour 8 with a 80% chance\nHour 15, 21 with a 50% chance"];
+  eat -> exam [label= "Hour 8 with a 20% chance"]
+  eat -> rest [label= "Hour 11"]
+  
+  study -> exam [label= "Hour 9 with a 20% chance"];
+  study -> eat [label= "Hour 10 if hunger <= 10\nHour 14, 20"]
+  study -> rest [label= "Hour 11"]
+  study -> sleep [label= "Hour 1\nHour 23, 0 with a 80% chance"]
+  study -> rest [label= "Hour 16, 17, 18, 19, \n22, 23, 0 with a 33% chance"]
+  
+  exam -> study [label= "Hour 9 with a 80% chance\nHour 10 if hunger > 10"]
+  exam -> eat [label = "Hour 10 if hunger <= 10"]
+  
+  rest -> study [label = "Hour 12\nHour 16, 17, 18, 19, \n22, 23, 0 with a 33% chance"]
+  rest -> eat [label = "Hour 20"]
+  rest -> sleep [label = "Hour 1\nHour 23, 0 with a 80% chance"]
+
+  sleep -> death [label= "One of the stats is zero"]
+  eat -> death [label= "One of the stats is zero"]
+  exam -> death [label= "One of the stats is zero"]
+  study -> death [label= "One of the stats is zero"]
+  rest -> death [label= "One of the stats is zero"]
+  
+  sleep -> sleep
+  rest -> rest
+  study -> study
+  exam -> exam [label="Hour 8 with a 20% chance"]
+}
